@@ -23,6 +23,8 @@ function sum(a: number, b: number): number {
   return a + b;
 }
 
+console.log(sum(2, 3));
+
 function formatText(text: string, formatType: TextFormatType): string {
   if (formatType === 'uppercase') {
     return text.toUpperCase();
