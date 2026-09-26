@@ -19,13 +19,11 @@ type TextFormatType = 'uppercase' | 'lowercase' | 'capitalize';
 let uploadStatus: UploadStatusType;
 let textFormat: TextFormatType;
 
-const sum = (a: number, b: number): number => {
+function sum(a: number, b: number): number {
   return a + b;
-};
+}
 
-console.log(sum(2, 3));
-
-const formatText = (text: string, formatType: TextFormatType): string => {
+function formatText(text: string, formatType: TextFormatType): string {
   if (formatType === 'uppercase') {
     return text.toUpperCase();
   } else if (formatType === 'lowercase') {
@@ -33,15 +31,15 @@ const formatText = (text: string, formatType: TextFormatType): string => {
   } else {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
-};
+}
 
 console.log(formatText('hello!', 'lowercase'));
 console.log(formatText('Hello!', 'uppercase'));
 console.log(formatText('hello!', 'capitalize'));
 
-const removeChar = (text: string, char: string): string => {
+function removeChar(text: string, char: string): string {
   return text.replaceAll(char, '');
-};
+}
 
 console.log(removeChar('Hello!', '!'));
 
@@ -79,5 +77,5 @@ const users: IUser[] = [
   },
 ];
 
-const authorizedUsers = users.filter((user) => user.isLogin === true);
+const authorizedUsers: IUser[] = users.filter((user) => user.isLogin === true);
 console.log(authorizedUsers);
