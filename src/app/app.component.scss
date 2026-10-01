@@ -1,0 +1,145 @@
+@mixin flex($justify: flex-start, $align: stretch, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+
+@mixin bg-icon($icon, $size) {
+  background-image: url($icon);
+  background-size: $size;
+}
+
+@mixin text($weight, $size, $line-height: normal, $spacing: normal) {
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $line-height;
+  letter-spacing: $spacing;
+}
+
+.header {
+  width: 100%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  background: rgba(24, 18, 30, 0.5);
+  color: var(--white-color);
+  padding: 30px 0;
+  position: fixed;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__container {
+    @include flex(space-between, center);
+  }
+
+  &__logo-title {
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.4em;
+    margin-top: 10px;
+  }
+
+  &__nav {
+    font-weight: 600;
+    font-size: 18px;
+
+    &-list {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+  }
+
+  &__cta {
+    border-radius: 4px;
+    border: none;
+    padding: 12px 24px;
+    width: 158px;
+    height: 44px;
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    @include text(600, 16px, 125%, 0.01em);
+  }
+}
+
+.hero {
+  background-image: url('/images/backgrounds/mountains-bg.jpg');
+  background-size: cover;
+  color: var(--white-color);
+
+  &__container {
+    @include flex($direction: column);
+    padding-bottom: 82px;
+    min-height: 100vh;
+  }
+
+  &__title {
+    margin-top: auto;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 150%;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  &__cta {
+    margin-top: 41px;
+    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.2);
+    padding: 40px 42px;
+    border-radius: 10px;
+    @include flex(space-between, start);
+
+    &-field {
+      display: flex;
+      flex-direction: column;
+
+      select,
+      input {
+        width: 270px;
+        height: 52px;
+        color: var(--white-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: right 16px center;
+        padding: 0 30px 0 16px;
+        cursor: pointer;
+        @include text(700, 16px, 150%);
+
+        &::placeholder {
+          color: inherit;
+        }
+
+        &::-webkit-calendar-picker-indicator {
+          display: none;
+        }
+
+        option {
+          color: var(--dark-color);
+        }
+      }
+    }
+
+    &-select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      @include bg-icon('/icons/arrow-down-icon.svg', 15px);
+    }
+
+    &-input {
+      @include bg-icon('/icons/date-icon.svg', 18px);
+    }
+
+    &-hint {
+      margin-top: 8px;
+      padding-left: 10px;
+      @include text(400, 14px, 150%);
+    }
+  }
+}

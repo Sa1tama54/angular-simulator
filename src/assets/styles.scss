@@ -1,0 +1,34 @@
+@use './fonts';
+
+:root {
+  --white-color: #fdfdfd;
+  --dark-color: #18121e;
+  --primary-color: #1a3e3e;
+  --secondary-color: #f2be22;
+  --border-color: #e1e3e4;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Nunito Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.btn {
+  border: none;
+  border-radius: 4px;
+  padding: 16px 36px;
+  background-color: var(--primary-color);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: 0.01em;
+  color: var(--white-color);
+  cursor: pointer;
+}
