@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import './training';
+import './collection';
 import { Color } from '../enums/Color';
 
 const LAST_VISIT_KEY: string = 'lastVisitDate';
