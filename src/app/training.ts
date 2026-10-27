@@ -1,4 +1,4 @@
-interface IUser {
+export interface IUser {
   name: string;
   surname: string;
   age: number;
@@ -45,7 +45,7 @@ function removeChar(text: string, char: string): string {
 
 console.log(removeChar('Hello!', '!'));
 
-const users: IUser[] = [
+export const users: IUser[] = [
   {
     name: 'Иван',
     surname: 'Иванов',
