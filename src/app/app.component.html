@@ -7,25 +7,40 @@
 
     <nav class="header__nav">
       <ul class="header__nav-list">
-        <li><a href="#">Главная</a></li>
-        <li><a href="#">Про гида</a></li>
-        <li><a href="#">Программа тура</a></li>
-        <li><a href="#">Стоимость</a></li>
-        <li><a href="#">Блог</a></li>
-        <li><a href="#">Контакты</a></li>
+        <li>
+          <a href="#" id="nav-home-link">Главная</a>
+        </li>
+        <li>
+          <a href="#" id="nav-guide-link">Про гида</a>
+        </li>
+        <li>
+          <a href="#" id="nav-program-link">Программа тура</a>
+        </li>
+        <li>
+          <a href="#" id="nav-price-link">Стоимость</a>
+        </li>
+        <li>
+          <a href="#" id="nav-blog-link">Блог</a>
+        </li>
+        <li>
+          <a href="#" id="nav-contacts-link">Контакты</a>
+        </li>
       </ul>
     </nav>
 
-    <button class="header__cta">Консультация</button>
+    <button id="header-consultation-button" class="header__cta">Консультация</button>
   </div>
 </header>
 
 <main>
   <section class="hero">
     <div class="container hero__container">
-      <h1 class="hero__title">Насладись прогулкой в горах<br>с командой единомышленников</h1>
-
-      <form action="" class="hero__cta hero__cta-form">
+      <h1 class="hero__title">
+        Насладись прогулкой в горах
+        <br>
+        с командой единомышленников
+      </h1>
+      <form id="hero-search-form" class="hero__cta hero__cta-form">
         <div class="hero__cta-field">
           <select name="tour-location" id="tour-location-select" class="hero__cta-select">
             <option value="" disabled selected hidden>Локация для тура</option>
@@ -36,8 +51,9 @@
         </div>
 
         <div class="hero__cta-field">
-          <input type="text" placeholder="Дата похода" onfocus="this.type='date'; this.showPicker()"
-            onblur="if(!this.value) this.type='text'" class="hero__cta-input">
+          <input id="tour-date-input" type="text" placeholder="Дата похода"
+            onfocus="this.type='date'; this.showPicker()" onblur="if(!this.value) this.type='text'"
+            class="hero__cta-input">
           <span class="hero__cta-hint">укажите дату</span>
         </div>
 
@@ -50,7 +66,7 @@
           <span class="hero__cta-hint">выберите из списка</span>
         </div>
 
-        <button type="submit" class="btn">Найти программу</button>
+        <button id="search-program-button" type="submit" class="btn">Найти программу</button>
       </form>
     </div>
   </section>
