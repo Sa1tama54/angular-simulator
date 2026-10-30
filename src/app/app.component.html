@@ -70,4 +70,59 @@
       </form>
     </div>
   </section>
+
+  <section class="about-tour container">
+    <div class="about-tour__left-content">
+      <img src="/images/about-tour/mountain-peak.jpg" alt="Горная вершина" class="about-tour__img-back">
+      <div class="about-tour__img-front">
+        <img src="/images/about-tour/cabin-woods.jpg" alt="Домик в лесу">
+      </div>
+    </div>
+    <div class="about-tour__right-content">
+      <span class="about-tour__subtitle">о нашем походе</span>
+      <h2 class="about-tour__title">Исследуйте все горные массивы мира вместе с нами</h2>
+      <p class="about-tour__description">
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть
+        более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния,
+        взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской
+        литературе.
+      </p>
+      <button id="tour-program-button" class="btn">Программа тура</button>
+    </div>
+  </section>
+
+  <section class="programs">
+    <div class="container">
+      <div class="programs__content">
+        <span class="programs__subtitle">наше предложение</span>
+        <h2 class="programs__title">Лучшие программы для тебя</h2>
+        <p class="programs__description">
+          Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть
+          более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
+        </p>
+        <ul class="programs__list">
+          @for (feature of features; track feature.id) {
+          <li class="programs__item">
+            <div class="programs__item-icon">
+              <img [src]="'/icons/' + feature.icon + '.svg'" [alt]="feature.icon">
+            </div>
+            <div class="programs__item-body">
+              <h3 class="programs__item-title">{{feature.title}}</h3>
+              <p class="programs__item-text">{{feature.description}}</p>
+            </div>
+          </li>
+          }
+        </ul>
+        <button id="programs-price-button" class="btn">Стоимость программ</button>
+      </div>
+      <div class="programs__gallery">
+        <div class="programs__gallery-grid">
+          <img src="/images/programs/programs-gal-1.jpg" alt="Бирюзовая река в каньоне" class="programs__gallery-img">
+          <img src="/images/programs/programs-gal-2.jpg" alt="Путешественник на обрыве" class="programs__gallery-img">
+          <img src="/images/programs/programs-gal-3.jpg" alt="Снегоход в горах" class="programs__gallery-img">
+          <img src="/images/programs/programs-gal-4.jpg" alt="Минеральный ручей в горах" class="programs__gallery-img">
+        </div>
+      </div>
+    </div>
+  </section>
 </main>

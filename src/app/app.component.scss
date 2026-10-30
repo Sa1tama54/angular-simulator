@@ -10,20 +10,23 @@
   background-size: $size;
 }
 
-@mixin text($weight, $size, $line-height: normal, $spacing: normal) {
+@mixin text($weight, $size, $line-height: normal, $color: var(--white-color), $spacing: normal) {
   font-weight: $weight;
   font-size: $size;
   line-height: $line-height;
   letter-spacing: $spacing;
+  color: $color;
 }
 
 .header {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
   background: rgba(24, 18, 30, 0.5);
   color: var(--white-color);
   padding: 30px 0;
-  position: fixed;
 
   a {
     text-decoration: none;
@@ -140,6 +143,212 @@
       margin-top: 8px;
       padding-left: 10px;
       @include text(400, 14px, 150%);
+    }
+  }
+}
+
+.about-tour {
+  padding: 100px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  &__left-content {
+    position: relative;
+    max-width: 480px;
+    height: 526px;
+
+    img {
+      border-radius: 24px;
+    }
+  }
+
+  &__img-back {
+    z-index: 1;
+  }
+
+  &__img-front {
+    position: absolute;
+    z-index: 2;
+    top: 126px;
+    left: 130px;
+
+    img {
+      display: block;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-image: url('/icons/play-icon.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgba(253, 253, 253, 0.6);
+      cursor: pointer;
+    }
+  }
+
+  &__right-content {
+    padding-top: 64px;
+  }
+
+  &__subtitle {
+    @include text(400, 24px, 83%, var(--secondary-color));
+  }
+
+  &__title {
+    margin-top: 8px;
+    @include text(800, 32px, 120%, var(--dark-color));
+  }
+
+  &__description {
+    margin-top: 40px;
+    max-width: 560px;
+    width: 100%;
+    @include text(400, 18px, 150%, var(--dark-color));
+  }
+
+  button {
+    margin-top: 40px;
+    font-weight: 600;
+  }
+}
+
+.programs {
+  padding: 80px 0 100px;
+  background-color: var(--bg-color);
+
+  .container {
+    @include flex(space-between, center);
+  }
+
+  &__content {
+    max-width: 580px;
+  }
+
+  &__subtitle {
+    @include text(400, 24px, 83%, var(--secondary-color));
+  }
+
+  &__title {
+    margin-top: 8px;
+    @include text(800, 32px, 120%, var(--dark-color));
+  }
+
+  &__description {
+    margin-top: 40px;
+    @include text(400, 18px, 150%, var(--dark-color));
+  }
+
+  &__list {
+    list-style: none;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__item {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-10px) scale(1.02);
+      cursor: pointer;
+    }
+
+    &-icon {
+      @include flex(center, center);
+      width: 50px;
+      height: 50px;
+      border-radius: 4px;
+    }
+
+    &:nth-child(1) &-icon {
+      background-color: rgba(60, 130, 100, 0.12);
+    }
+
+    &:nth-child(2) &-icon {
+      background-color: rgba(90, 100, 190, 0.12);
+    }
+
+    &:nth-child(3) &-icon {
+      background-color: rgba(245, 190, 30, 0.15);
+    }
+
+    &-body {
+      max-width: 504px;
+    }
+
+    &-title {
+      @include text(700, 18px, 111%, var(--dark-color));
+    }
+
+    &-text {
+      margin-top: 2px;
+      @include text(400, 14px, 143%, var(--dark-color));
+    }
+  }
+
+  button {
+    margin-top: 40px;
+    font-weight: 600;
+  }
+
+  &__gallery {
+    flex-shrink: 0;
+
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 250px);
+      grid-auto-rows: 250px;
+      gap: 10px;
+    }
+
+    &-img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+
+      &:nth-child(1) {
+        border-radius: 0 50px;
+
+        &:hover {
+          transform: translate(-5px, -5px);
+        }
+      }
+
+      &:nth-child(2) {
+        border-radius: 50px 0;
+
+        &:hover {
+          transform: translate(5px, -5px);
+        }
+      }
+
+      &:nth-child(3) {
+        border-radius: 50px 0;
+
+        &:hover {
+          transform: translate(-5px, 5px);
+        }
+      }
+
+      &:nth-child(4) {
+        border-radius: 0 50px;
+
+        &:hover {
+          transform: translate(5px, 5px);
+        }
+      }
     }
   }
 }
