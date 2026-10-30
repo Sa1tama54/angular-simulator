@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import './training';
 import { Color } from '../enums/Color';
 import { IFeatureItem } from '../interfaces/IFeatureItem';
+import { FormsModule } from '@angular/forms';
+import { ILocation } from '../interfaces/ILocation';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -15,6 +17,24 @@ export class AppComponent {
   VISIT_COUNT_KEY: string = 'visitCount';
   lastVisitDate: string | null = localStorage.getItem(this.LAST_VISIT_KEY);
   visitCount: number = Number(localStorage.getItem(this.VISIT_COUNT_KEY)) + 1;
+  selectedLocation: string = '';
+  selectedMemberOption: string = '';
+  dateValue: string = '';
+
+  locations: ILocation[] = [
+    {
+      id: 1,
+      value: 'mountains',
+      name: 'Кавказские горы',
+    },
+    {
+      id: 2,
+      value: 'altay',
+      name: 'Алтай',
+    },
+  ];
+
+  memberOptions: string[] = ['1 человек', '2 человека', '3 человека', '4 человека'];
 
   features: IFeatureItem[] = [
     {

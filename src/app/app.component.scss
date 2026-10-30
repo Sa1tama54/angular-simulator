@@ -144,6 +144,13 @@
       padding-left: 10px;
       @include text(400, 14px, 150%);
     }
+
+    .btn:disabled {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.4);
+      cursor: not-allowed;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
   }
 }
 
