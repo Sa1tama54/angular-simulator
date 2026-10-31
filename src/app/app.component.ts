@@ -76,16 +76,6 @@ export class AppComponent {
     this.startTimer();
   }
 
-  decrement(): void {
-    if (this.counter > 0) {
-      this.counter--;
-    }
-  }
-
-  increment(): void {
-    this.counter++;
-  }
-
   setMode(mode: HeaderMode): void {
     this.mode = mode;
   }

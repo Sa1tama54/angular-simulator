@@ -47,7 +47,11 @@
         </button>
       } @else if (mode === 'clicker') {
         <div class="header__switcher-counter">
-          <button class="header__switcher-step" id="increment-button" (click)="increment()">
+          <button
+            class="header__switcher-step"
+            id="increment-button"
+            (click)="counter = counter + 1"
+          >
             +
           </button>
           <span>{{ counter }}</span>
@@ -55,7 +59,7 @@
             class="header__switcher-step"
             [disabled]="counter === 0"
             id="decrement-button"
-            (click)="decrement()"
+            (click)="counter = counter - 1"
           >
             -
           </button>
