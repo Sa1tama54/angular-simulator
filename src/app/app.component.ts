@@ -1,74 +1,113 @@
 import { Component } from '@angular/core';
 import './training';
 import { Color } from '../enums/Color';
-import { IUser, users } from './training';
-import { Collection } from './collection';
+import { IFeatureItem } from '../interfaces/IFeatureItem';
+import { FormsModule } from '@angular/forms';
+import { ILocation } from '../interfaces/ILocation';
 
-interface IProduct {
-  title: string;
-  price: number;
-}
+type HeaderMode = 'date' | 'clicker';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   companyName: string = 'РУМТИБЕТ';
-  LAST_VISIT_KEY: string = 'lastVisitDate';
-  VISIT_COUNT_KEY: string = 'visitCount';
-  lastVisitDate: string | null = localStorage.getItem(this.LAST_VISIT_KEY);
-  visitCount: number = Number(localStorage.getItem(this.VISIT_COUNT_KEY)) + 1;
+  selectedLocation: string = '';
+  selectedMemberOption: string = '';
+  dateValue: string = '';
+  currentDateTime: string = '';
+  counter: number = 0;
+  mode: HeaderMode = 'date';
+  liveInputValue: string = '';
+  isLoading: boolean = true;
+  private LAST_VISIT_KEY: string = 'lastVisitDate';
+  private VISIT_COUNT_KEY: string = 'visitCount';
+  private lastVisitDate: string | null = localStorage.getItem(this.LAST_VISIT_KEY);
+  private visitCount: number = Number(localStorage.getItem(this.VISIT_COUNT_KEY)) + 1;
 
-  productCollection: Collection<IProduct> = new Collection<IProduct>([
-    { title: 'Беспроводная мышь', price: 1500 },
-    { title: 'Механическая клавиатура', price: 4500 },
-    { title: 'Игровой монитор', price: 23000 },
-  ]);
-  userCollection: Collection<IUser> = new Collection<IUser>(users);
+  locations: ILocation[] = [
+    {
+      id: 1,
+      value: 'mountains',
+      name: 'Кавказские горы',
+    },
+    {
+      id: 2,
+      value: 'altay',
+      name: 'Алтай',
+    },
+  ];
+
+  memberOptions: string[] = ['1 человек', '2 человека', '3 человека', '4 человека'];
+
+  features: IFeatureItem[] = [
+    {
+      id: 1,
+      icon: 'guide-icon',
+      title: 'Опытный гид',
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+    },
+    {
+      id: 2,
+      icon: 'security-icon',
+      title: 'Безопасный поход',
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+    },
+    {
+      id: 3,
+      icon: 'price-icon',
+      title: 'Лояльные цены',
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+    },
+  ];
 
   constructor() {
+    this.simulateLoading();
     this.isPrimaryColor(Color.Red);
     this.isPrimaryColor(Color.Black);
     this.saveLastVisitDate();
     this.saveVisitCount();
-    this.runCollections();
+    this.startTimer();
   }
 
-  isPrimaryColor(color: Color): boolean {
+  setMode(mode: HeaderMode): void {
+    this.mode = mode;
+  }
+
+  private simulateLoading(): void {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
+  }
+
+  private getCurrentDate(): string {
+    return new Date().toLocaleString('ru-RU');
+  }
+
+  private startTimer(): void {
+    this.currentDateTime = this.getCurrentDate();
+
+    setInterval(() => {
+      this.currentDateTime = this.getCurrentDate();
+    }, 1000);
+  }
+
+  private isPrimaryColor(color: Color): boolean {
     const primaryColors: Color[] = [Color.Red, Color.Green, Color.Blue];
     return primaryColors.includes(color);
   }
 
-  saveLastVisitDate(): void {
-    const currentDate: string = new Date().toLocaleString('ru-RU');
-    localStorage.setItem(this.LAST_VISIT_KEY, currentDate);
+  private saveLastVisitDate(): void {
+    localStorage.setItem(this.LAST_VISIT_KEY, this.getCurrentDate());
   }
 
-  saveVisitCount(): void {
+  private saveVisitCount(): void {
     localStorage.setItem(this.VISIT_COUNT_KEY, String(this.visitCount));
-  }
-
-  runCollections(): void {
-    this.productCollection.getAllElements();
-    this.productCollection.getElement(2);
-    this.productCollection.replaceElement(0, { title: 'Проводная мышь', price: 1000 });
-    this.productCollection.removeElement(1);
-    this.productCollection.clear();
-
-    this.userCollection.getAllElements();
-    this.userCollection.getElement(2);
-    this.userCollection.replaceElement(3, {
-      name: 'Sam',
-      surname: 'Winchester',
-      age: 35,
-      country: 'USA',
-      email: 'sam@example.com',
-      isLogin: true,
-    });
-    this.userCollection.removeElement(1);
-    this.userCollection.clear();
   }
 }
