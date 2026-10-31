@@ -22,6 +22,7 @@ export class AppComponent {
   counter: number = 0;
   mode: HeaderMode = 'date';
   liveInputValue: string = '';
+  isLoading: boolean = true;
   private readonly LAST_VISIT_KEY: string = 'lastVisitDate';
   private readonly VISIT_COUNT_KEY: string = 'visitCount';
   private lastVisitDate: string | null = localStorage.getItem(this.LAST_VISIT_KEY);
@@ -67,6 +68,7 @@ export class AppComponent {
   ];
 
   constructor() {
+    this.simulateLoading();
     this.isPrimaryColor(Color.Red);
     this.isPrimaryColor(Color.Black);
     this.saveLastVisitDate();
@@ -86,6 +88,12 @@ export class AppComponent {
 
   setMode(mode: HeaderMode): void {
     this.mode = mode;
+  }
+
+  private simulateLoading(): void {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
   }
 
   private getCurrentDate(): string {
