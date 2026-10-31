@@ -23,12 +23,12 @@ export class AppComponent {
   mode: HeaderMode = 'date';
   liveInputValue: string = '';
   isLoading: boolean = true;
-  private readonly LAST_VISIT_KEY: string = 'lastVisitDate';
-  private readonly VISIT_COUNT_KEY: string = 'visitCount';
+  private LAST_VISIT_KEY: string = 'lastVisitDate';
+  private VISIT_COUNT_KEY: string = 'visitCount';
   private lastVisitDate: string | null = localStorage.getItem(this.LAST_VISIT_KEY);
   private visitCount: number = Number(localStorage.getItem(this.VISIT_COUNT_KEY)) + 1;
 
-  readonly locations: ILocation[] = [
+  locations: ILocation[] = [
     {
       id: 1,
       value: 'mountains',
@@ -41,9 +41,9 @@ export class AppComponent {
     },
   ];
 
-  readonly memberOptions: string[] = ['1 человек', '2 человека', '3 человека', '4 человека'];
+  memberOptions: string[] = ['1 человек', '2 человека', '3 человека', '4 человека'];
 
-  readonly features: IFeatureItem[] = [
+  features: IFeatureItem[] = [
     {
       id: 1,
       icon: 'guide-icon',
