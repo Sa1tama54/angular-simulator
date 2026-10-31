@@ -5,6 +5,8 @@ import { IFeatureItem } from '../interfaces/IFeatureItem';
 import { FormsModule } from '@angular/forms';
 import { ILocation } from '../interfaces/ILocation';
 
+type HeaderMode = 'date' | 'clicker';
+
 @Component({
   selector: 'app-root',
   imports: [FormsModule],
@@ -13,15 +15,18 @@ import { ILocation } from '../interfaces/ILocation';
 })
 export class AppComponent {
   companyName: string = 'РУМТИБЕТ';
-  LAST_VISIT_KEY: string = 'lastVisitDate';
-  VISIT_COUNT_KEY: string = 'visitCount';
-  lastVisitDate: string | null = localStorage.getItem(this.LAST_VISIT_KEY);
-  visitCount: number = Number(localStorage.getItem(this.VISIT_COUNT_KEY)) + 1;
   selectedLocation: string = '';
   selectedMemberOption: string = '';
   dateValue: string = '';
+  currentDateTime: string = '';
+  counter: number = 0;
+  mode: HeaderMode = 'date';
+  private readonly LAST_VISIT_KEY: string = 'lastVisitDate';
+  private readonly VISIT_COUNT_KEY: string = 'visitCount';
+  private lastVisitDate: string | null = localStorage.getItem(this.LAST_VISIT_KEY);
+  private visitCount: number = Number(localStorage.getItem(this.VISIT_COUNT_KEY)) + 1;
 
-  locations: ILocation[] = [
+  readonly locations: ILocation[] = [
     {
       id: 1,
       value: 'mountains',
@@ -34,9 +39,9 @@ export class AppComponent {
     },
   ];
 
-  memberOptions: string[] = ['1 человек', '2 человека', '3 человека', '4 человека'];
+  readonly memberOptions: string[] = ['1 человек', '2 человека', '3 человека', '4 человека'];
 
-  features: IFeatureItem[] = [
+  readonly features: IFeatureItem[] = [
     {
       id: 1,
       icon: 'guide-icon',
@@ -65,19 +70,45 @@ export class AppComponent {
     this.isPrimaryColor(Color.Black);
     this.saveLastVisitDate();
     this.saveVisitCount();
+    this.startTimer();
   }
 
-  isPrimaryColor(color: Color): boolean {
+  decrement(): void {
+    if (this.counter > 0) {
+      this.counter--;
+    }
+  }
+
+  increment(): void {
+    this.counter++;
+  }
+
+  setMode(mode: HeaderMode): void {
+    this.mode = mode;
+  }
+
+  private getCurrentDate(): string {
+    return new Date().toLocaleString('ru-RU');
+  }
+
+  private startTimer(): void {
+    this.currentDateTime = this.getCurrentDate();
+
+    setInterval(() => {
+      this.currentDateTime = this.getCurrentDate();
+    }, 1000);
+  }
+
+  private isPrimaryColor(color: Color): boolean {
     const primaryColors: Color[] = [Color.Red, Color.Green, Color.Blue];
     return primaryColors.includes(color);
   }
 
-  saveLastVisitDate(): void {
-    const currentDate: string = new Date().toLocaleString('ru-RU');
-    localStorage.setItem(this.LAST_VISIT_KEY, currentDate);
+  private saveLastVisitDate(): void {
+    localStorage.setItem(this.LAST_VISIT_KEY, this.getCurrentDate());
   }
 
-  saveVisitCount(): void {
+  private saveVisitCount(): void {
     localStorage.setItem(this.VISIT_COUNT_KEY, String(this.visitCount));
   }
 }

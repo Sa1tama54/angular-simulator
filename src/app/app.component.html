@@ -30,6 +30,34 @@
 
     <button id="header-consultation-button" class="header__cta">Консультация</button>
   </div>
+  <div class="container header__switcher">
+    @if (mode === 'date') {
+      <span class="header__switcher-value">{{ currentDateTime }}</span>
+      <button
+        id="show-clicker-button"
+        class="header__switcher-btn btn"
+        (click)="setMode('clicker')"
+      >
+        Показать кликер
+      </button>
+    } @else if (mode === 'clicker') {
+      <div class="header__switcher-counter">
+        <button class="header__switcher-step" id="increment-button" (click)="increment()">+</button>
+        <span>{{ counter }}</span>
+        <button
+          class="header__switcher-step"
+          [disabled]="counter === 0"
+          id="decrement-button"
+          (click)="decrement()"
+        >
+          -
+        </button>
+      </div>
+      <button id="show-date-button" class="header__switcher-btn btn" (click)="setMode('date')">
+        Показать дату
+      </button>
+    }
+  </div>
 </header>
 
 <main>

@@ -18,6 +18,16 @@
   color: $color;
 }
 
+@mixin btn-disabled(
+  $bg-color: rgba(255, 255, 255, 0.15),
+  $color: rgba(255, 255, 255, 0.4),
+  $cursor: not-allowed
+) {
+  background-color: $bg-color;
+  color: $color;
+  cursor: $cursor;
+}
+
 .header {
   position: absolute;
   top: 0;
@@ -65,6 +75,44 @@
     color: var(--primary-color);
     cursor: pointer;
     @include text(600, 16px, 125%, 0.01em);
+  }
+
+  &__switcher {
+    @include flex(flex-end, center);
+    gap: 16px;
+    padding-top: 20px;
+
+    &-value {
+      min-width: 160px;
+      text-align: right;
+      @include text(500, 16px, 150%);
+    }
+
+    &-counter {
+      @include flex(flex-end, center);
+      gap: 16px;
+      min-width: 160px;
+    }
+
+    &-step {
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      @include text(500, 16px, 150%);
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
+
+    &-btn {
+      background-color: var(--white-color);
+      @include text(500, 14px, 125%, var(--primary-color));
+    }
   }
 }
 
@@ -146,10 +194,7 @@
     }
 
     .btn:disabled {
-      background-color: rgba(255, 255, 255, 0.15);
-      color: rgba(255, 255, 255, 0.4);
-      cursor: not-allowed;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      @include btn-disabled();
     }
   }
 }
