@@ -128,6 +128,17 @@
           Найти программу
         </button>
       </form>
+
+      <div class="hero__live">
+        <input
+          id="live-input"
+          type="text"
+          class="hero__live-input"
+          placeholder="Живой инпут"
+          [(ngModel)]="liveInputValue"
+        />
+        <p class="hero__live-text">{{ liveInputValue }}</p>
+      </div>
     </div>
   </section>
 

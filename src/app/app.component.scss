@@ -197,6 +197,35 @@
       @include btn-disabled();
     }
   }
+
+  &__live {
+    margin-top: 20px;
+    @include flex(flex-start, center);
+    gap: 48px;
+
+    &-input {
+      width: 270px;
+      height: 52px;
+      padding: 0 40px 0 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: transparent;
+      @include text(700, 16px, 150%);
+
+      &::placeholder {
+        color: inherit;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: var(--white-color);
+      }
+    }
+
+    &-text {
+      @include text(700, 14px, 150%);
+    }
+  }
 }
 
 .about-tour {

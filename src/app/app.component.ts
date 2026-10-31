@@ -21,6 +21,7 @@ export class AppComponent {
   currentDateTime: string = '';
   counter: number = 0;
   mode: HeaderMode = 'date';
+  liveInputValue: string = '';
   private readonly LAST_VISIT_KEY: string = 'lastVisitDate';
   private readonly VISIT_COUNT_KEY: string = 'visitCount';
   private lastVisitDate: string | null = localStorage.getItem(this.LAST_VISIT_KEY);
