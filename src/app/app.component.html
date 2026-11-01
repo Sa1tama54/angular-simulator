@@ -188,7 +188,7 @@
           </p>
           <ul class="programs__list">
             @for (feature of features; track feature.id) {
-              <li class="programs__item">
+              <li [id]="'program-item-' + feature.id" class="programs__item">
                 <div class="programs__item-icon">
                   <img [src]="'/icons/' + feature.icon + '.svg'" [alt]="feature.icon" />
                 </div>
