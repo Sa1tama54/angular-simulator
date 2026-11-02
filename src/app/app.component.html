@@ -203,26 +203,9 @@
         </div>
         <div class="programs__gallery">
           <div class="programs__gallery-grid">
-            <img
-              src="/images/programs/turquoise-river-canyon.jpg"
-              alt="Бирюзовая река в каньоне"
-              class="programs__gallery-img"
-            />
-            <img
-              src="/images/programs/traveler-on-cliff.jpg"
-              alt="Путешественник на обрыве"
-              class="programs__gallery-img"
-            />
-            <img
-              src="/images/programs/snowmobile-in-mountains.jpg"
-              alt="Снегоход в горах"
-              class="programs__gallery-img"
-            />
-            <img
-              src="/images/programs/mineral-stream-mountains.jpg"
-              alt="Минеральный ручей в горах"
-              class="programs__gallery-img"
-            />
+            @for (image of galleryImages; track $index) {
+              <img [src]="'/images/programs/' + image.name + '.jpg'" [alt]="image.alt" class="programs__gallery-img" />
+            }
           </div>
         </div>
       </div>

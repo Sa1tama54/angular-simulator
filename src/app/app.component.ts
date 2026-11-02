@@ -67,6 +67,13 @@ export class AppComponent {
     },
   ];
 
+  galleryImages: { name: string; alt: string }[] = [
+    { name: 'turquoise-river-canyon', alt: 'Бирюзовая река в каньоне' },
+    { name: 'traveler-on-cliff', alt: 'Путешественник на обрыве' },
+    { name: 'snowmobile-in-mountains', alt: 'Снегоход в горах' },
+    { name: 'mineral-stream-mountains', alt: 'Минеральный ручей в горах' },
+  ];
+
   constructor() {
     this.simulateLoading();
     this.isPrimaryColor(Color.Red);
